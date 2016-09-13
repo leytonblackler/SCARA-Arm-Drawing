@@ -124,7 +124,8 @@ public class Arm
    // calculate tool position from motor angles 
    // updates variable in the class
    public void directKinematic(){
-       xj1= xm1 +r*Math.cos(theta1);
+       xj1 = xm1 + r*Math.cos(theta1);
+       yj1 = ym1 + r*Math.sin(theta1);
        
        // midpoint between joints
        double  xa = xj1 + 0.5(xj2 - xj1);
@@ -168,6 +169,8 @@ public class Arm
         double l1 = d1/2;
         double h1 = Math.sqrt(r*r - d1*d1/4);
         // elbows positions
+        xj1 = xm1 + r*Math.cos(theta1);
+        yj1 = ym1 + r*Math.sin(theta1);
         //xj1 = ...;
         //yj1 = ...;
 
@@ -192,8 +195,8 @@ public class Arm
         
         double h2 = Math.sqrt(r*r - d2*d2/4);
         // elbows positions
-        xj2 = ...;
-        yj2 = ...;
+        xj2 = xm2 + r*Math.cos(theta2);
+        yj2 = ym2 + r*Math.sin(theta2);
         // motor angles for both 1st elbow positions
         theta2 = ...;
         if ((theta2>0)||(theta2<-Math.PI)){
