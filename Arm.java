@@ -126,8 +126,6 @@ public class Arm
     // calculate tool position from motor angles 
     // updates variable in the class
     public void directKinematic(){
-        xj1 = xm1 + r*Math.cos(theta1);
-        yj1 = ym1 + r*Math.sin(theta1);
         // midpoint between joints
         double xa = xj1 + 0.5*(xj2 - xj1);
         double ya = yj1 + 0.5*(yj2 - yj1);
@@ -145,6 +143,8 @@ public class Arm
             // tool position
             xt = xa + h * Math.cos((Math.PI/2) - alpha); /*# Removed 'double' variable creation */
             yt = ya + h * Math.sin((Math.PI/2) - alpha);
+            //double xt2 = xa - h*Math.cos(alpha - Math.PI/2);
+            //double yt2 = ya - h*Math.sin(alpha - Math.PI/2);
         } else {
             valid_state = false;
         }
@@ -175,13 +175,13 @@ public class Arm
         double l1 = d1/2;
         // distance between point A and j2
         double h1 = Math.sqrt((r*r) - (l1*l1));
-        double beta = Math.atan2((yt - ym2), (xt - xm2));
+        theta1 = Math.atan2((yt - ym2), (xt - xm2));
         // angle between h1 and horizontal of point A
-        double alpha = (Math.PI/2) - (Math.PI - beta);
+        double alpha = (Math.PI/2) - (Math.PI - theta1);
         xj2 = xa - h1*Math.cos(alpha);
         yj2 = ya - h1*Math.sin(alpha);
 
-        if ((beta>0)||(beta<-Math.PI)){
+        if ((theta1>0)||(theta1<-Math.PI)){
             valid_state = false;
             UI.println("Ange 1 -invalid");
             return;
