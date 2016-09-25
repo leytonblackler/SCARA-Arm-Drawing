@@ -1,5 +1,3 @@
-package ToWebSite;
-
 /* Code for Assignment ?? 
  * Name:
  * Usercode:
@@ -148,7 +146,9 @@ public class Main{
     
     // save angles into the file
     public void save_ang(){
-        String fname = UIFileChooser.open();
+        String fname = UIFileChooser.save();
+        if (drawing==null) {UI.println("drawing null");}
+        if (arm==null) {UI.println("arm null");}
         tool_path.convert_drawing_to_angles(drawing,arm,fname);
     }
     
