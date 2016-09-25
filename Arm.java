@@ -203,9 +203,9 @@ public class Arm
 
         // motor angles for both 1st elbow positions
         theta2 = Math.atan2(yj2-ym2, xj2-xm2);
-        if ((theta2>0)||(theta2<-Math.PI)){
+        if (((theta2*180/Math.PI) < -90)||(theta2>0)||(theta2 < -Math.PI)){
             valid_state = false;
-            UI.println("Ange 2 -invalid");
+            UI.println("Angle 2 -invalid");
             return;
         }
 
