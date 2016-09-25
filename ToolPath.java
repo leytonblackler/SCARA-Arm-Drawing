@@ -1,4 +1,3 @@
-package ToWebSite;
 
 
 /**
@@ -12,6 +11,7 @@ package ToWebSite;
  */
 import ecs100.UI;
 import java.util.*;
+import java.io.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -77,6 +77,7 @@ public class ToolPath
                 }
             }
         }
+        save_angles(fname);//we added this
     }
     
     public void save_angles(String fname){
@@ -85,6 +86,20 @@ public class ToolPath
             theta1_vector.get(i),theta2_vector.get(i),pen_vector.get(i));
         }
         
+        try {
+            File file = new File(fname);
+            PrintStream out = new PrintStream(file);
+            String str_out;
+            for (int i = 1; i < theta1_vector.size() ; i++){
+                str_out = String.format("%3.1f,%3.1f,%d\n",theta1_vector.get(i),theta2_vector.get(i),pen_vector.get(i));
+                out.println(str_out);
+            }
+            out.close();
+        } catch (IOException e) {
+            UI.println("Problem writing to the file " +fname+ ".txt");
+        }
+        
+        /*
          try {
             //Whatever the file path is.
             File statText = new File(fname);
@@ -101,7 +116,7 @@ public class ToolPath
         } catch (IOException e) {
             UI.println("Problem writing to the file statsTest.txt");
         }
-        
+        */
     }
     
     // takes sequence of angles and converts it 
@@ -117,7 +132,7 @@ public class ToolPath
     
     // save file with motor control values
     public void save_pwm_file(){
-        ...
+        //...
     }
 
 }
