@@ -1,5 +1,3 @@
-package ToWebSite;
-
 
 /**
  * Class represents the drawing as set of (x,y) points.
@@ -43,7 +41,7 @@ public class Drawing
     {
         PointXY new_point = new PointXY(x,y,pen);
         path.add(new_point);
-        UI.printf("Pioint added.x=%f y=%f pen=%b New path size - %d\n",
+        UI.printf("Point added.x=%f y=%f pen=%b New path size - %d\n",
               x,y,pen,path.size());
     }
     
@@ -70,7 +68,6 @@ public class Drawing
                 UI.setColor(Color.LIGHT_GRAY); // pen uo
             }
             UI.drawLine(p0.get_x(), p0.get_y(), p1.get_x(), p1.get_y());
-            
         }
     }
     
